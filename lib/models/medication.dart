@@ -6,9 +6,9 @@ class Medication extends DailyTracker{
   final String measure;
 
     Medication({
-      required this.id,
-      required this.name,
-      required this.icon,
+      required super.id,
+      required super.name,
+      required super.icon,
       required this.dosage,
       required this.measure,
     });
