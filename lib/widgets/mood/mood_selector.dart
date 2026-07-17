@@ -8,13 +8,16 @@ class MoodSelector extends StatelessWidget{
   final Function(Mood) onMoodSelected;
 
 
+
   const MoodSelector({
 
     super.key,
     required this.moods,
     required this.selectedMood,
     required this.onMoodSelected,
+
   });
+
 
   @override
   Widget build (BuildContext context){
@@ -23,6 +26,10 @@ class MoodSelector extends StatelessWidget{
       mainAxisAlignment:MainAxisAlignment.spaceEvenly,
 
       children: moods.map((mood){
+
+        final bool isSelected = 
+          mood.id == selectedMood?.id;
+
         return GestureDetector(
 
           onTap: (){
@@ -31,12 +38,14 @@ class MoodSelector extends StatelessWidget{
 
           child: Column(
             children: [
+              
               Text(
-                mood.icon,
+                mood.getIcon(isSelected),
                 style: const TextStyle( 
                   fontSize : 40,
                 ),
               ),    
+
 
               Text(
                 mood.name,

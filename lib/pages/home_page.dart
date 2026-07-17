@@ -27,8 +27,13 @@ class _HomePageState extends State<HomePage> {
   late List<Mood> moods;
   Mood? selectedMood;
 
+  String getTodayDate() {
 
+    final now = DateTime.now();
 
+    return "${now.day}/${now.month}/${now.year}";
+
+  }
 
   @override
   void initState() {
@@ -51,6 +56,18 @@ class _HomePageState extends State<HomePage> {
       body: Column(
 
         children: [
+
+          Text(
+
+            getTodayDate(),
+            style: const TextStyle(
+
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+
+            ),
+          ),
+
 
           const Text(
             "How are you feeling today?",
@@ -93,7 +110,19 @@ class _HomePageState extends State<HomePage> {
                   ),
 
           ),
+        
+          ElevatedButton(
+            onPressed: () {
+              debugPrint("Saving day...");
+            },
+
+            child: const Text(
+              "Save",
+            ),
+          ),
+        
         ],
+
       ),
       
     );
