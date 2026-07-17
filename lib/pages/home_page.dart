@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../models/daily_tracker.dart';
 import '../services/tracker_service.dart';
 import '../widgets/dashboard/tracker_tile.dart';
+import '../services/mood_service.dart';
+import '../models/mood.dart';
+import '../widgets/mood/mood_selector.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -18,8 +21,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final TrackerService service = TrackerService();
-
   late List<DailyTracker> trackers;
+
+  final MoodService moodService = MoodService();
+  late List<Mood> moods;
+  Mood? selectedMood;
+
+
 
 
   @override
@@ -27,6 +35,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     trackers = service.getTodayTrackers();
+    moods = moodService.getMoods();
   }
 
 
@@ -39,23 +48,54 @@ class _HomePageState extends State<HomePage> {
         title: const Text("KittyCheck 🐱"),
       ),
 
-      body: ListView.builder(
+      body: Column(
 
-        itemCount: trackers.length,
+        children: [
 
-        itemBuilder: (context, index) {
+          const Text(
+            "How are you feeling today?",
+            style: TextStyle(fontSize: 20,)
+          ),
 
-          return TrackerTile(
-            tracker: trackers[index],
-            onTap: (){
+          MoodSelector(
+
+            moods: moods,
+            selectedMood: selectedMood,
+
+            onMoodSelected: (mood){
+              
               setState((){
-                trackers[index].toggleCompleted();
+
+                selectedMood = mood;
+
               });
             },
-          );
+          ),
 
-        },
+          Expanded(
+
+            child: ListView.builder(
+
+                    itemCount: trackers.length,
+
+                    itemBuilder: (context, index) {
+
+                      return TrackerTile(
+                        tracker: trackers[index],
+                        onTap: (){
+                          setState((){
+                            trackers[index].toggleCompleted();
+                          });
+                        },
+                      );
+
+                    },
+                  ),
+
+          ),
+        ],
       ),
+      
     );
   }
 }
