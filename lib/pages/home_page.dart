@@ -7,6 +7,9 @@ import '../services/mood_service.dart';
 import '../models/mood.dart';
 import '../widgets/mood/mood_selector.dart';
 
+import '../models/daily_entry.dart';
+import '../services/daily_entry_service.dart';
+
 
 class HomePage extends StatefulWidget {
 
@@ -34,6 +37,8 @@ class _HomePageState extends State<HomePage> {
     return "${now.day}/${now.month}/${now.year}";
 
   }
+
+  final DailyEntryService entryService = DailyEntryService();
 
   @override
   void initState() {
@@ -113,7 +118,9 @@ class _HomePageState extends State<HomePage> {
         
           ElevatedButton(
             onPressed: () {
-              debugPrint("Saving day...");
+              final entry = DailyEntry(date: DateTime.now(), mood: selectedMood, trackers: trackers);
+
+              entryService.saveEntry(entry,);
             },
 
             child: const Text(

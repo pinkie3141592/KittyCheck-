@@ -13,4 +13,5 @@ class Medication extends DailyTracker{
       required this.measure,
     });
 
+
 }
