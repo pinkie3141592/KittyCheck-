@@ -9,7 +9,7 @@ import '../widgets/mood/mood_selector.dart';
 
 import '../models/daily_entry.dart';
 import '../services/daily_entry_service.dart';
-
+import 'history_page.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -54,9 +54,28 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
 
-      appBar: AppBar(
-        title: const Text("KittyCheck 🐱"),
-      ),
+    appBar: AppBar(
+      title: const Text("KittyCheck 🐱"),
+
+      actions: [
+
+        IconButton(
+          icon: const Icon(Icons.history),
+
+          onPressed: () {
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HistoryPage(),
+              ),
+            );
+
+          },
+        ),
+
+      ],
+    ),
 
       body: Column(
 

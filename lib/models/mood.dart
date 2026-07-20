@@ -20,5 +20,23 @@ class Mood {
 
   }
 
+  Map<String, dynamic> toMap(){
+
+    return{
+      'id': id,
+      'name': name,
+      'icon': icon,
+      'selectedIcon': selectedIcon,
+    };
+  }
+
+  factory Mood.fromMap(Map<String, dynamic> map){
+    return Mood(
+      id: map['id'],
+      name: map['name'],
+      icon: map['icon'],
+      selectedIcon: map['selectedIcon'],
+    );
+  }
 
 }

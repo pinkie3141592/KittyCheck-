@@ -8,10 +8,8 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
-  runApp(const KittyCheck());
-
   await Hive.openBox("dailyEntries");
 
-
+  runApp(const KittyCheck());
 
 }

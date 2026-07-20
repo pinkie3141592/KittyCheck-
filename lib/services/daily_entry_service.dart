@@ -1,21 +1,32 @@
 import 'package:flutter/foundation.dart';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
 import '../models/daily_entry.dart';
 
 class DailyEntryService{
 
+  final Box box = Hive.box("dailyEntries");
+
   void saveEntry(DailyEntry entry){
 
-    debugPrint("Saving entry for ${entry.date}",);
+    box.put(
+      entry.key,
+      entry.toMap(),
+    );
 
-    debugPrint("Mood: ${entry.mood?.name}",);
+    debugPrint("Entry ${entry.key} saved!");
 
-    for(final tracker in entry.trackers){
-
-      debugPrint(
-        "${tracker.name}: ${tracker.completed}",
-      );
-    }
   }
+
+  List<DailyEntry> getAllEntries(){
+
+    return box.values
+      .map((entry) => DailyEntry.fromMap(
+          Map<String, dynamic>.from(entry),
+      ))
+    .toList();
+  }
+
   
 }

@@ -30,4 +30,41 @@ class DailyEntry {
   }
 
 
+  Map<String, dynamic> toMap() {
+
+    return {
+
+      'date': date.toIso8601String(),
+
+      'mood': mood?.toMap(),
+
+      'trackers': trackers
+          .map((tracker) => tracker.toMap())
+          .toList(),
+
+    };
+
+  }
+
+
+  factory DailyEntry.fromMap(Map<String, dynamic> map) {
+
+    return DailyEntry(
+
+      date: DateTime.parse(map['date']),
+
+      mood: map['mood'] != null
+          ? Mood.fromMap(map['mood'])
+          : null,
+
+      trackers: (map['trackers'] as List)
+          .map((tracker) =>
+              DailyTracker.fromMap(tracker))
+          .toList(),
+
+    );
+
+  }
+
+
 }
