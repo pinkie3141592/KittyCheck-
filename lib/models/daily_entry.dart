@@ -54,12 +54,17 @@ class DailyEntry {
       date: DateTime.parse(map['date']),
 
       mood: map['mood'] != null
-          ? Mood.fromMap(map['mood'])
+          ? Mood.fromMap(
+              Map<String, dynamic>.from(map['mood']),
+              )
           : null,
 
       trackers: (map['trackers'] as List)
           .map((tracker) =>
-              DailyTracker.fromMap(tracker))
+              DailyTracker.fromMap(
+                Map<String, dynamic>.from(tracker),
+              ),
+          )
           .toList(),
 
     );
