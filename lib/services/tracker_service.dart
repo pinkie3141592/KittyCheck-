@@ -1,6 +1,5 @@
 import '../models/daily_tracker.dart';
 import '../models/habit.dart';
-import '../models/medication.dart';
 
 class TrackerService{
 
@@ -16,14 +15,6 @@ class TrackerService{
         id: "exercise",
         name: "Exercise",
         icon: "🏋️",
-      ),
-
-      Medication(
-        id: "fluoxetine",
-        name: "Fluoxetine",
-        icon: "💊",
-        dosage: 60,
-        measure: "mg",
       ),
 
       Habit(

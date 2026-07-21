@@ -4,20 +4,28 @@ class MedicationInfo {
 
   final String name;
 
-  final String description;
-
   final String generalUse;
 
+  final String description;
+
   final String source;
+
+  final String icon;
+
 
   const MedicationInfo({
 
     required this.id,
-    required this.name,
-    required this.description,
-    required this.generalUse,
-    required this.source,
 
+    required this.name,
+
+    required this.generalUse,
+
+    required this.description,
+
+    required this.source,
+ 
+    required this.icon,
   });
 
 }

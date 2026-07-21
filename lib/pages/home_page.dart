@@ -10,6 +10,7 @@ import '../widgets/mood/mood_selector.dart';
 import '../models/daily_entry.dart';
 import '../services/daily_entry_service.dart';
 import 'history_page.dart';
+import 'medicines_page.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -136,7 +137,9 @@ class _HomePageState extends State<HomePage> {
           ),
         
           ElevatedButton(
+
             onPressed: () {
+
               final entry = DailyEntry(date: DateTime.now(), mood: selectedMood, trackers: trackers);
 
               entryService.saveEntry(entry,);
@@ -147,7 +150,27 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         
+
+          ElevatedButton(
+
+            onPressed: (){
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MedicinesPage()
+                ),
+              );
+            },
+
+            child: const Text(
+              "Medicines",
+            ),
+
+          ),
+
         ],
+
 
       ),
       

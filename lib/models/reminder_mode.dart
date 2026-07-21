@@ -1,0 +1,4 @@
+enum ReminderMode {
+  automatic,
+  manual,
+}

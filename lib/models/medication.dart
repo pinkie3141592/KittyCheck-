@@ -1,17 +1,44 @@
-import 'daily_tracker.dart';
+import 'package:flutter/material.dart';
 
-class Medication extends DailyTracker{
+import 'medication_info.dart';
+import 'medication_unit.dart';
+import 'reminder_mode.dart';
 
-  final int dosage;
-  final String measure;
+class Medication {
 
-    Medication({
-      required super.id,
-      required super.name,
-      required super.icon,
-      required this.dosage,
-      required this.measure,
-    });
+  final String id;
 
+  final MedicationInfo info;
+
+  final double dosage;
+
+  final MedicationUnit unit;
+
+  final ReminderMode reminderMode;
+
+  final int? hoursBetweenDoses;
+
+  final DateTime? lastTaken;
+
+  final List<TimeOfDay> reminderTimes;
+
+
+  bool takenToday;
+
+  Medication({
+    required this.id,
+    required this.info,
+    required this.dosage,
+    required this.unit,
+    required this.reminderMode,
+    this.hoursBetweenDoses,
+    this.lastTaken,
+    this.reminderTimes = const [],
+    this.takenToday = false,
+  });
+
+  void toggleTaken() {
+    takenToday = !takenToday;
+  }
 
 }
